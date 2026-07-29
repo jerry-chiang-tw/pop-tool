@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POP 製作台｜A4 印製工具</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=ZCOOL+KuaiLe&family=Zhi+Mang+Xing&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <h1>POP 製作台</h1>
+    <span class="brand-sub">A4 印製工具・選版型・放照片／文字・拖曳 LOGO</span>
+  </div>
+  <div class="top-actions">
+    <button class="btn" id="btn-png">下載 PNG</button>
+    <button class="btn btn-primary" id="btn-print">列印 A4</button>
+  </div>
+</div>
+
+<div class="workbench">
+
+  <!-- ============ Left: control panel ============ -->
+  <div class="panel">
+
+    <div class="section">
+      <p class="section-title">1. 選版型</p>
+      <div class="template-grid" id="template-grid"></div>
+    </div>
+
+    <div class="section" id="block-inspector-section" hidden>
+      <p class="section-title">2. 這一格放什麼</p>
+      <div class="seg" id="seg-block-type">
+        <button data-v="text">文字</button>
+        <button data-v="image">照片</button>
+      </div>
+      <div class="block-actions" id="block-actions"></div>
+      <p class="hint">先點選畫布上的色塊，再到這裡設定內容。</p>
+    </div>
+
+    <div class="section">
+      <p class="section-title">LOGO 庫</p>
+      <div class="logo-grid" id="logo-grid"></div>
+      <label class="btn btn-block" for="logo-upload">＋ 上傳自訂 LOGO</label>
+      <input type="file" id="logo-upload" accept="image/png,image/svg+xml,image/webp" hidden>
+      <p class="hint">點縮圖即可放到畫布上，可拖曳移動、拉右下角調整大小（比例鎖定）。</p>
+    </div>
+
+    <div class="section">
+      <p class="section-title">版面</p>
+      <div class="seg" id="seg-orient">
+        <button data-v="portrait" class="active">直式</button>
+        <button data-v="landscape">橫式</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-title">顏色</p>
+      <div class="colors">
+        <div class="color-item"><label>底色</label><input type="color" id="col-bg" value="#F4E7D3"></div>
+        <div class="color-item"><label>主色</label><input type="color" id="col-accent" value="#E4536B"></div>
+        <div class="color-item"><label>文字</label><input type="color" id="col-text" value="#2B2620"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-title">字體</p>
+      <select id="sel-font">
+        <option value="'Noto Sans TC', sans-serif" data-weight="900">粗黑體・醒目促銷</option>
+        <option value="'Noto Serif TC', serif" data-weight="700">明體・質感簡約</option>
+        <option value="'ZCOOL KuaiLe', sans-serif" data-weight="400">圓體・活潑可愛</option>
+        <option value="'Zhi Mang Xing', cursive" data-weight="400">手寫體・溫馨風</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <p class="section-title">邊框裝飾</p>
+      <div class="border-picker" id="border-picker">
+        <div class="border-opt active" data-b="none"><div class="mini"></div>無</div>
+        <div class="border-opt" data-b="solid"><div class="mini"></div>實線</div>
+        <div class="border-opt" data-b="double"><div class="mini"></div>雙線</div>
+        <div class="border-opt" data-b="tag"><div class="mini"></div>票券</div>
+      </div>
+    </div>
+
+    <button class="btn btn-block" id="btn-reset">重設整張 POP</button>
+  </div>
+
+  <!-- ============ Right: canvas stage ============ -->
+  <div class="stage">
+    <div class="lightbox">
+      <div class="ruler-top"></div>
+      <div class="ruler-left"></div>
+      <div class="sheet-scaler" id="scaler">
+        <div class="pop-sheet" id="sheet">
+          <div class="blocks-layer" id="blocks-layer"></div>
+          <div class="logo-layer" id="logo-layer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="block-image-upload" accept="image/*" hidden>
+
+<script src="script.js"></script>
+</body>
+</html>
